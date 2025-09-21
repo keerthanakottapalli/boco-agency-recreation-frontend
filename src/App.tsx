@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from "./utils/api";
+const STRAPI_URL = "https://boco-agency-recreation-backend-4.onrender.com";
 
 // Define the types for the data coming from Strapi
 interface ServiceCard {
@@ -73,14 +74,14 @@ const App: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:1337/api/homepage?populate[hero_image]=true&populate[services_list][populate]=service_image');
+                const response = await API.get(`/homepage?populate[hero_image]=true&populate[services_list][populate]=service_image`);
                 if (response.data.data) {
                     // Correctly access the single-type data from the root of the 'data' object
                     setHomepageData(response.data.data as HomepageData);
                     // console.log('Fetched homepage data:', response.data.data);
 
                     // Fetch brands data
-                    const brandsResponse = await axios.get('http://localhost:1337/api/brands?populate=*');
+                    const brandsResponse = await API.get(`/brands?populate=*`);
                     if (brandsResponse.data.data && brandsResponse.data.data.length > 0) {
 
                         setBrandsData({ logo: brandsResponse.data.data[0].logo });
@@ -88,7 +89,7 @@ const App: React.FC = () => {
                     } else {
                         setBrandsData(null);
                     }
-                    const projectsResponse = await axios.get('http://localhost:1337/api/projects?populate=*');
+                    const projectsResponse = await API.get(`/projects?populate=*`);
                     if (projectsResponse.data.data && projectsResponse.data.data.length > 0) {
                         setProjectsData(projectsResponse.data.data as ProjectsData[]);
                     } else {
@@ -126,7 +127,7 @@ const App: React.FC = () => {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:1337/api/case-studies?populate=*').then(res => {
+        API.get('/case-studies?populate=*').then(res => {
             setCaseStudies(res.data.data.map((item: any) => ({
                 id: item.id,
                 title: item.title,
@@ -230,7 +231,7 @@ const App: React.FC = () => {
                 <div className="md:w-1/2 flex justify-center md:justify-end z-10 p-4 md:p-0">
                     {homepageData.hero_image?.url ? (
                         <img
-                            src={`http://localhost:1337${homepageData.hero_image.url}`}
+                            src={`${STRAPI_URL}${homepageData.hero_image.url}`}
                             alt="Hero"
                             className="w-full max-w-md lg:max-w-4xl rounded-2xl "
                         />
@@ -257,7 +258,7 @@ const App: React.FC = () => {
                         {brandsData?.logo?.map((logo, index) => (
                             <img
                                 key={`brand-logo-${index}`}
-                                src={`http://localhost:1337${logo.url}`}
+                                src={`${STRAPI_URL}${logo.url}`}
                                 alt={`Brand Logo ${index}`}
                                 className="h-16 w-auto transition-opacity duration-300"
                             />
@@ -266,7 +267,7 @@ const App: React.FC = () => {
                         {brandsData?.logo?.map((logo, index) => (
                             <img
                                 key={`brand-logo-duplicate-${index}`}
-                                src={`http://localhost:1337${logo.url}`}
+                                src={`${STRAPI_URL}${logo.url}`}
                                 alt={`Brand Logo Duplicate ${index}`}
                                 className="h-16 w-auto transition-opacity duration-300"
                             />
@@ -314,7 +315,7 @@ const App: React.FC = () => {
                                         style={{ width: '220px', height: '440px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                     >
                                         <img
-                                            src={`http://localhost:1337${img.url}`}
+                                            src={`${STRAPI_URL}${img.url}`}
                                             alt={`Screenshot ${idx + 1}`}
                                             className="rounded-2xl object-cover"
                                         />
@@ -351,7 +352,7 @@ const App: React.FC = () => {
                                 {/* Service Image */}
                                 {service.service_image?.url && (
                                     <img
-                                        src={`http://localhost:1337${service.service_image.url}`}
+                                        src={`${STRAPI_URL}${service.service_image.url}`}
                                         alt={service.service_title}
                                         className="w-20 h-20 object-cover rounded-full mb-4 border-2 border-purple-200"
                                     />
@@ -387,7 +388,7 @@ const App: React.FC = () => {
                                 <span className="bg-purple-200 text-black font-bold px-6 py-2 rounded-full text-lg">{cs.category}</span>
                             </div>
                             <img
-                                src={`http://localhost:1337${cs.main_image.url}`}
+                                src={`${STRAPI_URL}${cs.main_image.url}`}
                                 alt={cs.title}
                                 className="rounded-xl mb-4 w-full h-64 object-cover"
                             />
