@@ -144,6 +144,7 @@ const App: React.FC = () => {
         });
     }, []);
 
+console.log("Strapi URL:", process.env.REACT_APP_STRAPI_URL);
 
 
     if (loading) {
