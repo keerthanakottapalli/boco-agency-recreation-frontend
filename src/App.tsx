@@ -144,9 +144,6 @@ const App: React.FC = () => {
         });
     }, []);
 
-console.log("Strapi URL:", process.env.REACT_APP_STRAPI_URL);
-
-
     if (loading) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">

@@ -1,0 +1,9 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="60" height="60" rx="10" fill="#2C3E50"/> {/* Dark Blue-Grey Background */}
+
+    {/* Interconnected 'N' or 'X' shape */}
+    <path d="M20 20L40 40M40 20L20 40" stroke="#00BCD4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+    {/* Optional: Add a subtle glow or secondary element */}
+    <circle cx="30" cy="30" r="5" fill="#FFFFFF" opacity="0.8"/>
+</svg>
