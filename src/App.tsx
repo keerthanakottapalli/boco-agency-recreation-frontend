@@ -173,7 +173,7 @@ console.log("Strapi URL:", process.env.REACT_APP_STRAPI_URL);
         <div className="bg-white-900 px-14 min-h-screen font-inter text-gray-300">
             {/* Header with Nav and CTA */}
             <header className="p-4 md:p-6 lg:p-6 flex justify-between items-center top-0 z-50">
-                <div className=" lg:text-4xl text-2xl md:text-2xl pl-4 font-bold text-blue-950">boco</div>
+                <div className=" lg:text-4xl text-2xl md:text-2xl pl-4 font-bold text-blue-950">Nexa</div>
                 <nav className="hidden md:flex rounded-full border-purple-200 border justify-center p-4 space-x-4 md:space-x-10">
                     <a href="#hero" className="text-lg font-medium text-blue-950 transition-colors duration-200">Home</a>
                     <a href="#services" className="text-lg font-medium text-blue-950 transition-colors duration-200">Services</a>
